@@ -2,6 +2,6 @@ package agile.kata
 
 class FizzBuzz {
 
-    fun stringFrom(number: Int): String = if (number % 3 == 0) "Fizz" else number.toString()
+    fun stringFrom(number: Int): String = if (number % 3 == 0) "Fizz" else if (number % 5 == 0) "Buzz" else number.toString()
 
 }
