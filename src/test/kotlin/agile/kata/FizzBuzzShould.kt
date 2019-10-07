@@ -3,40 +3,35 @@ package agile.kata
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.equalTo
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class FizzBuzzShould {
 
     private val fizzBuzz: FizzBuzz = FizzBuzz()
 
-    @Test
-    fun `return and string representing number 1`() {
-        assertThat(fizzBuzz.stringFrom(1), `is`(equalTo("1")))
+    @ParameterizedTest
+    @ValueSource(ints = [1, 2, 4])
+    fun `return string representing the number for numbers not divisible by 3 or 5`(number: Int) {
+        assertThat(fizzBuzz.stringFrom(number), `is`(equalTo(number.toString())))
     }
 
-    @Test
-    fun `return and string representing number 2`() {
-        assertThat(fizzBuzz.stringFrom(2), `is`(equalTo("2")))
+    @ParameterizedTest
+    @ValueSource(ints = [3, 12, 24])
+    fun `return Fizz string for numbers divisible by 3`(number: Int) {
+        assertThat(fizzBuzz.stringFrom(number), `is`(equalTo("Fizz")))
     }
 
-    @Test
-    fun `return and string representing number 4`() {
-        assertThat(fizzBuzz.stringFrom(4), `is`(equalTo("4")))
+    @ParameterizedTest
+    @ValueSource(ints = [5, 25, 55])
+    fun `return Buzz string for numbers divisible by 5`(number: Int) {
+        assertThat(fizzBuzz.stringFrom(number), `is`(equalTo("Buzz")))
     }
 
-    @Test
-    fun `return and string representing number 3`() {
-        assertThat(fizzBuzz.stringFrom(3), `is`(equalTo("Fizz")))
-    }
-
-    @Test
-    fun `return and string representing number 5`() {
-        assertThat(fizzBuzz.stringFrom(5), `is`(equalTo("Buzz")))
-    }
-
-    @Test
-    fun `return and string representing number 15`() {
-        assertThat(fizzBuzz.stringFrom(15), `is`(equalTo("FizzBuzz")))
+    @ParameterizedTest
+    @ValueSource(ints = [15, 30, 60, 150])
+    fun `return Buzz string for numbers divisible by 3 and 5`(number: Int) {
+        assertThat(fizzBuzz.stringFrom(number), `is`(equalTo("FizzBuzz")))
     }
 
 }
