@@ -2,10 +2,12 @@ package agile.kata
 
 class FizzBuzz {
 
+    private fun Int.divisibleBy(number: Int): Boolean = this % number == 0
+
     fun stringFrom(number: Int): String =
-        if (number % 3 == 0 && number % 5 == 0) "FizzBuzz"
-        else if (number % 3 == 0) "Fizz"
-        else if (number % 5 == 0) "Buzz"
+        if (number.divisibleBy(3) && number.divisibleBy(5)) "FizzBuzz"
+        else if (number.divisibleBy(3)) "Fizz"
+        else if (number.divisibleBy(5)) "Buzz"
         else number.toString()
 
 }
