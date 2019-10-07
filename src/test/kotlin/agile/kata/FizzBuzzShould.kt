@@ -18,7 +18,12 @@ class FizzBuzzShould {
     fun `return and string representing number 2`() {
         assertThat(fizzBuzz.stringFrom(2), `is`(equalTo("2")))
     }
-    
+
+    @Test
+    fun `return and string representing number 4`() {
+        assertThat(fizzBuzz.stringFrom(4), `is`(equalTo("4")))
+    }
+
 }
 
 
