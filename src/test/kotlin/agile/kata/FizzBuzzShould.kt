@@ -29,6 +29,11 @@ class FizzBuzzShould {
         assertThat(fizzBuzz.stringFrom(3), `is`(equalTo("Fizz")))
     }
 
+    @Test
+    fun `return and string representing number 5`() {
+        assertThat(fizzBuzz.stringFrom(5), `is`(equalTo("Buzz")))
+    }
+
 }
 
 
