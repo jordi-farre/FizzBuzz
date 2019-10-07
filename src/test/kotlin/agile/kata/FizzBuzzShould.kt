@@ -18,6 +18,7 @@ class FizzBuzzShould {
     fun `return and string representing number 2`() {
         assertThat(fizzBuzz.stringFrom(2), `is`(equalTo("2")))
     }
+    
 }
 
 
