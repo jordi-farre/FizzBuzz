@@ -7,11 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class FizzBuzzShould {
 
-    private val fizzBuzz: FizzBuzz = FizzBuzz(
-        listOf(
-            DivisibleByThreeAndFive(), DivisibleByThree(), DivisibleByFive(), NotDivisibleByThreeAndFive()
-        )
-    )
+    private val fizzBuzz: FizzBuzz = FizzBuzz.create()
 
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 4])
