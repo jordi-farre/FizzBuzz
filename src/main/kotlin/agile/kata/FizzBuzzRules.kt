@@ -1,43 +1,27 @@
 package agile.kata
 
+import arrow.core.Option
+import arrow.core.Option.Companion.empty
+import arrow.core.Option.Companion.just
+
 private fun Int.divisibleBy(number: Int): Boolean = this % number == 0
 
-interface FizzBuzzRule {
-
-    fun canHandle(number: Int): Boolean
-
-    fun stringFrom(number: Int): String
-
+fun divisibleByThreeAndFive(number: Int): Option<String> = when {
+    number.divisibleBy(3) && number.divisibleBy(5) -> just("FizzBuzz")
+    else -> empty()
 }
 
-class DivisibleByThreeAndFive: FizzBuzzRule {
-
-    override fun canHandle(number: Int): Boolean = number.divisibleBy(3) && number.divisibleBy(5)
-
-    override fun stringFrom(number: Int): String = "FizzBuzz"
-
+fun divisibleByThree(number: Int): Option<String> = when {
+    number.divisibleBy(3) -> just("Fizz")
+    else -> empty()
 }
 
-class DivisibleByThree: FizzBuzzRule {
-
-    override fun canHandle(number: Int): Boolean = number.divisibleBy(3)
-
-    override fun stringFrom(number: Int): String = "Fizz"
-
+fun divisibleByFive(number: Int): Option<String> = when {
+    number.divisibleBy(5) -> just("Buzz")
+    else -> empty()
 }
 
-class DivisibleByFive: FizzBuzzRule {
-
-    override fun canHandle(number: Int): Boolean = number.divisibleBy(5)
-
-    override fun stringFrom(number: Int): String = "Buzz"
-
-}
-
-class NotDivisibleByThreeAndFive: FizzBuzzRule {
-
-    override fun canHandle(number: Int): Boolean = !number.divisibleBy(3) && !number.divisibleBy(5)
-
-    override fun stringFrom(number: Int): String = number.toString()
-
+fun notDivisibleByThreeAndFive(number: Int): Option<String> = when {
+    !number.divisibleBy(3) && !number.divisibleBy(5) -> just(number.toString())
+    else -> empty()
 }

@@ -1,15 +1,26 @@
 package agile.kata
 
-class FizzBuzz(private val fizzBuzzRules: List<FizzBuzzRule>) {
+import arrow.core.Option
+import arrow.core.firstOrNone
+import arrow.core.getOrElse
 
-    fun stringFrom(number: Int): String = fizzBuzzRules.first { it.canHandle(number) }.stringFrom(number)
+class FizzBuzz(private val fizzBuzzRules: List<(Int) -> Option<String>>) {
+
+    fun stringFrom(number: Int): String =
+        fizzBuzzRules
+            .map { it.invoke(number) }
+            .firstOrNone { it.nonEmpty() }
+            .map { it.getOrElse { "RuleNotAvailable" } }
+            .getOrElse { "RuleNotSupported" }
 
     companion object FizzBuzz {
 
         fun create(): agile.kata.FizzBuzz = FizzBuzz(listOf(
-            DivisibleByThreeAndFive(), DivisibleByThree(), DivisibleByFive(), NotDivisibleByThreeAndFive()
+            { number -> divisibleByThreeAndFive(number) },
+            { number -> divisibleByThree(number) },
+            { number -> divisibleByFive(number) },
+            { number -> notDivisibleByThreeAndFive(number) }
         ))
-
     }
 
 }
